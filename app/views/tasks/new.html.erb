@@ -1,9 +1,10 @@
 
 <div>
-<%= form_for(@task) do |f| %>
-  <%= f.lable :task_description %>
-  <%= f.text_field :description %>
+  <h3>Add new Task</h3>
+  <%= form_for(@task) do |f| %>
 
-  <%= f.submit "Create Task"%>
-<% end %>
+    Task description: <%= f.text_field :description %> </br>
+
+    <%= f.submit "Create Task"%>
+  <% end %>
 </div>
