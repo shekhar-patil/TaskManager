@@ -1,1 +1,6 @@
-<%= link_to 'Add new todo' , 'new' %>
+<%= link_to 'Add new task' , 'new' %>
+
+<h1>Tasks List</h1>
+<% @tasks.each do |task| %>
+	<%= task.description %></br>
+<% end %>
