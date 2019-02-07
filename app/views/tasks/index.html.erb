@@ -1,6 +1,7 @@
-<%= link_to 'Add new task' , 'new' %>
+<%= link_to 'Add new task', 'new' %>
 
 <h1>Tasks List</h1>
 <% @tasks.each do |task| %>
-	<%= task.description %></br>
+	<%= task.description %>
+	<%= button_to  "Delete", task, :method => :delete %></br>
 <% end %>
