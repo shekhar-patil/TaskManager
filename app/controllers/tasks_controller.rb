@@ -36,7 +36,7 @@ class TasksController < ApplicationController
 
 		task.destroy
 		@tasks = Task.all
-		redirect_to task
+		redirect_to tasks_url
 	end
 
 	private 
