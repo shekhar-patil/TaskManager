@@ -1,5 +1,4 @@
 class TasksController < ApplicationController
-
 	def index
 		@tasks = Task.all
 	end
@@ -11,6 +10,7 @@ class TasksController < ApplicationController
 	def create
 	  @task = Task.new(task_params)
 		@task.save
+
 		redirect_to task_url(@task)
 	end
 
@@ -24,16 +24,25 @@ class TasksController < ApplicationController
 
 	def update
 		@task = Task.find(params[:id])
+
 		# Checks for validations as well
 		if @task.update_attributes(task_params)
 			redirect_to @task
 		end
 	end
 
+	def destroy
+		task = Task.find(params[:id])
+
+		task.destroy
+		@tasks = Task.all
+		redirect_to task
+	end
+
 	private 
 
-	def task_params
-		params.require(:task).permit(:description)    
-	end
+		def task_params
+			params.require(:task).permit(:description)    
+		end
 
 end
