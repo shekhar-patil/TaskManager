@@ -9,9 +9,9 @@ class TasksController < ApplicationController
 
 	def create
 	  @task = Task.new(task_params)
-		@task.save
-
-		redirect_to task_url(@task)
+		if @task.save!
+			redirect_to task_url(@task)
+		end
 	end
 
 	def show
