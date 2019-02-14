@@ -8,16 +8,11 @@ class TasksController < ApplicationController
 	end
 
 	def create
-	  @task = Task.new(task_params)
-<<<<<<< HEAD
+		@task = Task.new(task_params)
 		if @task.save
 			redirect_to task_url(@task)
 		else
 			render 'new'
-=======
-		if @task.save!
-			redirect_to task_url(@task)
->>>>>>> 8f0f51962bb9ad9db90940ad521503ecd28d31fd
 		end
 	end
 
@@ -48,8 +43,8 @@ class TasksController < ApplicationController
 
 	private 
 
-		def task_params
-			params.require(:task).permit(:description)    
-		end
+	def task_params
+		params.require(:task).permit(:description)    
+	end
 
 end
