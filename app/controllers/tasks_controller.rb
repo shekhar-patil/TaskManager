@@ -9,8 +9,10 @@ class TasksController < ApplicationController
 
 	def create
 	  @task = Task.new(task_params)
-		if @task.save!
+		if @task.save
 			redirect_to task_url(@task)
+		else
+			render 'new'
 		end
 	end
 
