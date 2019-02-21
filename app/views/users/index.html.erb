@@ -1,0 +1,8 @@
+<%= link_to 'Add new user', new_user_url %>
+
+<h1>users List</h1>
+<% @users.each do |user| %>
+  <%= user.id %>
+	<%= user.name %>
+	<%= button_to  "Delete", user , :method => :delete %></br>
+<% end %>

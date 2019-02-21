@@ -8,7 +8,9 @@ class TasksController < ApplicationController
 	end
 
 	def create
-		@task = Task.new(task_params)
+		@user = User.find(user_params[:user_id])
+		@task = @user.tasks.new(task_params)
+		
 		if @task.valid?
 			@task.save
 			redirect_to task_url(@task)
@@ -45,7 +47,10 @@ class TasksController < ApplicationController
 	private 
 
 	def task_params
-		params.require(:task).permit(:description)    
+		params.require(:task).permit(:description) 
+	end
+	def user_params
+		params.require(:user).permit(:user_id)
 	end
 
 end
