@@ -2,11 +2,17 @@ Rails.application.routes.draw do
   
   get   '/tasks',           to: 'tasks#index'
   get   '/new' ,  	        to: 'tasks#new'
-  post  '/tasks',		        to: 'tasks#create'
-  get   '/tasks/:id',	      to: 'tasks#show', as: 'task'
+  post  '/tasks',		    to: 'tasks#create'
+  get   '/tasks/:id',	    to: 'tasks#show', as: 'task'
   get   '/tasks/:id/edit',  to: 'tasks#edit', as: 'edit_task' 
   patch '/tasks/:id',       to: 'tasks#update'
   delete '/tasks/:id',      to: 'tasks#destroy'
 
-  resources :users
+  root to: 'tasks#index'
+  resources :users, only: [:new, :create]
+
+  get '/login'     => 'sessions#new'
+  post '/login'    => 'sessions#create'
+  delete '/logout' => 'sessions#destroy'  
+
 end
