@@ -1,4 +1,7 @@
 class TasksController < ApplicationController
+
+	before_action :require_login
+
 	def index
 		@tasks = Task.all
 	end
@@ -10,12 +13,13 @@ class TasksController < ApplicationController
 	def create
 		@user = User.find(user_params[:user_id])
 		@task = @user.tasks.new(task_params)
+		@task.creator_id = session[:user_id]
 		
 		if @task.valid?
 			@task.save
 			redirect_to task_url(@task)
 		else
-			render 'new'
+			render new
 		end
 	end
 
@@ -30,7 +34,6 @@ class TasksController < ApplicationController
 	def update
 		@task = Task.find(params[:id])
 
-		# Checks for validations as well
 		if @task.update_attributes(task_params)
 			redirect_to @task
 		end
@@ -46,11 +49,11 @@ class TasksController < ApplicationController
 
 	private 
 
-	def task_params
-		params.require(:task).permit(:description) 
-	end
-	def user_params
-		params.require(:user).permit(:user_id)
-	end
-
+		def task_params
+			params.require(:task).permit(:description) 
+		end
+		
+		def user_params
+			params.require(:user).permit(:user_id)
+		end
 end

@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
 	def destroy
 	  # remove saved user_id from the cookie:
 	  session.delete(:user_id)
-	  alert[:notice] = 'Logged out!'
+	  flash[:notice] = 'Logged out!'
 	  redirect_to login_path 
   end
 end
