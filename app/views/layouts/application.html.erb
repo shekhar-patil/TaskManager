@@ -16,9 +16,10 @@
     <div id = "container">
       <% if current_user %>
         Logged In as <%= current_user.email %>
+        <%= link_to "Logout", logout_path, method: :delete %>
         
       <% else %>
-        <%= link_to "Log IN", login_path %>
+        <%= link_to "Log In", login_path %>
       <% end %>
     <%= yield %>
   </body>

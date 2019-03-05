@@ -12,11 +12,12 @@ class UsersController < ApplicationController
 		@user = User.new(user_params)
 		if @user.valid?
 			@user.save
+			session[:user_id] = @user.id.to_s
 			flash[:notice] = 'Account created successfully!'
-			redirect_to users_url
+			redirect_to root_url
 		else
 			flash.now[:alert] = @user.errors.full_messages.join(', ')
-			render new_user
+			render new_user_url
 		end
 	end
 	
@@ -31,6 +32,6 @@ class UsersController < ApplicationController
 	private 
 
 		def user_params
-			params.require(:user).permit((:name, :email, :password, :password_confirmation))
+			params.require(:user).permit(:name, :email, :password, :password_confirmation)
 		end
 end
