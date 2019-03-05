@@ -10,6 +10,16 @@
   </head>
 
   <body>
+    <% flash.each do |key, value| %>
+      <div class="alert alert-<%= key %>"><%= value %></div>
+    <% end %>
+    <div id = "container">
+      <% if current_user %>
+        Logged In as <%= current_user.email %>
+        
+      <% else %>
+        <%= link_to "Log IN", login_path %>
+      <% end %>
     <%= yield %>
   </body>
 </html>

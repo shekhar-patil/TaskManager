@@ -1,16 +1,24 @@
-<div>
-	<% if @user.errors.any? %>
-		<ul>
-			<% @user.errors.full_messages.each do |msg| %>
-			<li><%= msg %></li>
-			<% end %>
-		</ul>
-	<% end %>
+<h1>Sign Up</h1>
 
-	<h3>Add new User</h3>
-	<%= form_for(@user) do |f| %>
+<%= form_for @user do |f| %>
+  <div>
     <%= f.label :name %>
-    <%= f.text_field :name %>
-    <%= f.submit "Create user"%>
-	<% end %>
-</div>
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+  <div>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+
+  <div>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+  <div>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
+  </div>
+  <div>
+    <%= f.submit "Sign up!" %>
+  </div>
+<% end %>
