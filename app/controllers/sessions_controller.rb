@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
 	def new
-  	end
+  end
 
 	def create
 		user = User.find_by(email: params[:login][:email].downcase)
@@ -19,9 +19,9 @@ class SessionsController < ApplicationController
 	end
 
 	def destroy
-	    # remove saved user_id from the cookie:
-	    session.delete(:user_id)
-	    alert[:notice] = 'Logged out!'
-	    redirect_to login_path 
-  	end
+	  # remove saved user_id from the cookie:
+	  session.delete(:user_id)
+	  alert[:notice] = 'Logged out!'
+	  redirect_to login_path 
+  end
 end
