@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get   '/tasks/:id/edit',      to: 'tasks#edit', as: 'edit_task' 
   patch '/tasks/:id',           to: 'tasks#update'
   delete'/tasks/:id',           to: 'tasks#destroy'
-
+  post '/tasks/update_state',   to: 'tasks#update_state', as: 'update_state'
   root to: 'tasks#index'
   resources :users, only: [:new, :create, :show]
 
