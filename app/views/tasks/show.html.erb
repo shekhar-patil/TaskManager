@@ -11,10 +11,9 @@
 	<br>
 	<br>
 	Change the state of Task:
-	<%= button_to "open", update_state_path({id: @task.id, state: "open" }), remote: true, date:{type: 'script'}, method: :post%>
-	<%= button_to "in progress", update_state_path({id: @task.id, state: "in_progress" }), remote: true, date:{type: 'script'}, method: :post%>
-	<%= button_to "Done", update_state_path({id: @task.id, state: "done" }), remote: true, date:{type: 'script'}, method: :post%>
+	<%= button_to "open", task_status_url({task_id: @task.id, state: "open" }), remote: true, date:{type: 'script'}, method: :patch%>
+	<%= button_to "in progress", task_status_url({task_id: @task.id, state: "in_progress" }), remote: true, date:{type: 'script'}, method: :patch%>
+	<%= button_to "Done", task_status_url({task_id: @task.id, state: "done" }), remote: true, date:{type: 'script'}, method: :patch%>
 	
-
 	<%= link_to 'Edit', edit_task_path(@task) %>
 </div>
