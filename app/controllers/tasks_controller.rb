@@ -47,16 +47,6 @@ class TasksController < ApplicationController
 		redirect_to tasks_url
 	end
 
-	def update_state
-		@task = Task.find(params[:id])
-		@task.state = params[:state]
-		if @task.save
-			respond_to do |format|
-				format.js { render 'update_state' }
-			end
-		end
-	end
-
 	private 
 
 		def task_params
