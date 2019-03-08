@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
 	# If user exist in DB run has_secure_password's .authenticate()
 		if user && user.authenticate(params[:login][:password]) 
 		  # Save the user.id in session cookie if password correct:
-		  session[:user_id] = user.id.to_s
+		  session[:user_id] = user.id
 		  flash[:notice] = 'Successfully logged in!'
 		  redirect_to root_path 
 		else

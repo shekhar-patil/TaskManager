@@ -3,7 +3,11 @@ class TasksController < ApplicationController
 	skip_before_action :verify_authenticity_token, :only => [:update_state, :update]
 
 	def index
-		@tasks = Task.all
+		@tasks_created = Task.created_tasks(current_user.id)
+		@tasks_assigned = Task.assigned_tasks(current_user.id)
+		@tasks = (@tasks_created + @tasks_assigned).uniq
+		authorize @tasks_created, :can_access_created_task?
+		authorize @tasks_assigned, :can_access_assigned_task?
 	end
 
 	def new
@@ -17,7 +21,7 @@ class TasksController < ApplicationController
 		
 		if @task.valid?
 			@task.save
-			redirect_to task_url(@task)
+			redirect_to task_url(@task)	
 		else
 			render new
 		end

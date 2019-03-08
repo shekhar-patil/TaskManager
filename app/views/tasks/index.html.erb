@@ -1,7 +1,14 @@
-<%= link_to 'Add new task', tasks_new_path %>
+<div>
+	<%= link_to 'Add new task', tasks_new_path %>
 
-<h1>Tasks List</h1>
-<% @tasks.each do |task| %>
-	<%= task.description %>
-	<%= button_to  "Delete", task, :method => :delete %></br>
-<% end %>
+	<h1>Tasks List</h1>
+	<% if @tasks.blank? %>
+		<p>You have not created or have been assigned to a Task</p>
+	<% else %>
+		<% @tasks.each do |task| %>
+			<%= task.description %>
+			<%= button_to  "Edit", edit_task_path(task), method: :get %>
+			<%= button_to  "Delete", task, method: :delete %></br>
+		<% end %>
+	<% end %>
+</div>
