@@ -16,4 +16,5 @@
 	<%= button_to "Done", task_status_url({task_id: @task.id, state: "done" }), remote: true, date:{type: 'script'}, method: :patch%>
 	
 	<%= link_to 'Edit', edit_task_path(@task) %>
+	<%= link_to 'Back', root_path %>
 </div>
