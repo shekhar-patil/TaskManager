@@ -3,10 +3,11 @@ Rails.application.routes.draw do
 
   resources :tasks do
     resources :status, only: [:update]
+    resources :comments, only: [:create]
   end
 
   resources :users, only: [:new, :create, :show]
-
+  
   get   '/login'  => 'sessions#new', as: 'new_login'
   post  '/login'  => 'sessions#create'
   delete'/logout' => 'sessions#destroy'

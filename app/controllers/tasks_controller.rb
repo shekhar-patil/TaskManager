@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
-	before_action :require_login
-	skip_before_action :verify_authenticity_token, :only => [:update_state, :update]
+  before_action :require_login
+  skip_before_action :verify_authenticity_token, :only => [:update_state, :update]
 
   def index
     @tasks = policy_scope(Task)
@@ -53,7 +53,7 @@ class TasksController < ApplicationController
   private 
 
     def task_params
-			params.require(:task).permit(:id, :description, :state)
+      params.require(:task).permit(:id, :description, :state)
     end
   
     def user_params
