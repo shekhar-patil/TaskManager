@@ -11,14 +11,14 @@ class TasksController < ApplicationController
   end
 
   def create
-    @user = User.find(user_params[:user_id])
+    @user = User.find(task_params[:assignee_id])
     @task = @user.tasks.new(task_params)
     authorize @task
     @task.creator_id = current_user.id
     
     if @task.valid?
       @task.save
-      redirect_to task_url(@task)  
+      redirect_to task_url(@task)
     else
       render new
     end
@@ -27,6 +27,7 @@ class TasksController < ApplicationController
   def show
     @task = Task.find(params[:id])
     authorize @task
+    @comments = @task.comments
   end
 
   def edit
@@ -53,10 +54,6 @@ class TasksController < ApplicationController
   private 
 
     def task_params
-      params.require(:task).permit(:id, :description, :state)
-    end
-  
-    def user_params
-      params.require(:user).permit(:user_id)
+      params.require(:task).permit(:description, :assignee_id)
     end
 end
